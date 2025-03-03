@@ -59,14 +59,15 @@ const DEFAULT_SILICONFLOW_URL = isApp
   ? SILICONFLOW_BASE_URL
   : ApiPath.SiliconFlow;
 
+console.log(getClientConfig());
 const DEFAULT_ACCESS_STATE = {
   accessCode: "",
-  useCustomConfig: false,
+  useCustomConfig: true,
 
   provider: ServiceProvider.OpenAI,
 
   // openai
-  openaiUrl: DEFAULT_OPENAI_URL,
+  openaiUrl: getClientConfig()?.openaiUrl ?? DEFAULT_OPENAI_URL,
   openaiApiKey: "",
 
   // azure

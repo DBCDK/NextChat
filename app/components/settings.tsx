@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from "react";
 
 import styles from "./settings.module.scss";
 
-import ResetIcon from "../icons/reload.svg";
 import AddIcon from "../icons/add.svg";
 import CloseIcon from "../icons/close.svg";
 import CopyIcon from "../icons/copy.svg";
@@ -13,7 +12,6 @@ import FireIcon from "../icons/fire.svg";
 import EyeIcon from "../icons/eye.svg";
 import DownloadIcon from "../icons/download.svg";
 import UploadIcon from "../icons/upload.svg";
-import ConfigIcon from "../icons/config.svg";
 import ConfirmIcon from "../icons/confirm.svg";
 
 import ConnectionIcon from "../icons/connection.svg";
@@ -29,9 +27,7 @@ import {
   Popover,
   Select,
   showConfirm,
-  showToast,
 } from "./ui-lib";
-import { ModelConfigList } from "./model-config";
 
 import { IconButton } from "./button";
 import {
@@ -49,8 +45,7 @@ import Locale, {
   changeLang,
   getLang,
 } from "../locales";
-import { copyToClipboard, clientUpdate, semverCompare } from "../utils";
-import Link from "next/link";
+import { copyToClipboard, semverCompare } from "../utils";
 import {
   Anthropic,
   Azure,
@@ -67,7 +62,6 @@ import {
   RELEASE_URL,
   STORAGE_KEY,
   ServiceProvider,
-  SlotID,
   UPDATE_URL,
   Stability,
   Iflytek,
@@ -86,8 +80,6 @@ import { useSyncStore } from "../store/sync";
 import { nanoid } from "nanoid";
 import { useMaskStore } from "../store/mask";
 import { ProviderType } from "../utils/cloud";
-import { TTSConfigList } from "./tts-config";
-import { RealtimeConfigList } from "./realtime-chat/realtime-config";
 
 function EditPromptModal(props: { id: string; onClose: () => void }) {
   const promptStore = usePromptStore();
@@ -511,6 +503,7 @@ function SyncItems() {
   return (
     <>
       <List>
+        {/*
         <ListItem
           title={Locale.Settings.Sync.CloudState}
           subTitle={
@@ -547,6 +540,7 @@ function SyncItems() {
             )}
           </div>
         </ListItem>
+        */}
 
         <ListItem
           title={Locale.Settings.Sync.LocalState}
@@ -1510,6 +1504,7 @@ export function Settings() {
             </Popover>
           </ListItem>
 
+          {/*
           <ListItem
             title={Locale.Settings.Update.Version(currentVersion ?? "unknown")}
             subTitle={
@@ -1542,6 +1537,7 @@ export function Settings() {
               />
             )}
           </ListItem>
+          */}
 
           <ListItem title={Locale.Settings.SendKey}>
             <Select
@@ -1774,6 +1770,7 @@ export function Settings() {
           </ListItem>
         </List>
 
+        {/*
         <List id={SlotID.CustomModel}>
           {saasStartComponent}
           {accessCodeComponent}
@@ -1909,6 +1906,7 @@ export function Settings() {
             }}
           />
         </List>
+        */}
 
         <DangerItems />
       </div>

@@ -170,9 +170,11 @@ function Screen() {
   const shouldTightBorder =
     getClientConfig()?.isApp || (config.tightBorder && !isMobileScreen);
 
+  /*
   useEffect(() => {
     loadAsyncGoogleFont();
   }, []);
+  */
 
   if (isArtifact) {
     return (
