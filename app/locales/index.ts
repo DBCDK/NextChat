@@ -20,6 +20,7 @@ import bn from "./bn";
 import sk from "./sk";
 import { merge } from "../utils/merge";
 import { safeLocalStorage } from "@/app/utils";
+import { DEFAULT_LANG } from "../constant";
 
 import type { LocaleType } from "./cn";
 export type { LocaleType, PartialLocaleType } from "./cn";
@@ -77,7 +78,6 @@ export const ALL_LANG_OPTIONS: Record<Lang, string> = {
 };
 
 const LANG_KEY = "lang";
-const DEFAULT_LANG = "en";
 
 const fallbackLang = en;
 const targetLang = ALL_LANGS[getLang()] as LocaleType;

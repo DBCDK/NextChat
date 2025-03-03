@@ -77,6 +77,8 @@ import {
   showPlugins,
 } from "../utils";
 
+import { FEATURES } from "../constant";
+
 import { uploadImage as uploadImageRemote } from "@/app/utils/chat";
 
 import dynamic from "next/dynamic";
@@ -1735,16 +1737,18 @@ function _Chat() {
                 />
               </div>
             )}
-            <div className="window-action-button">
-              <IconButton
-                icon={<ExportIcon />}
-                bordered
-                title={Locale.Chat.Actions.Export}
-                onClick={() => {
-                  setShowExport(true);
-                }}
-              />
-            </div>
+            {FEATURES.Export && (
+              <div className="window-action-button">
+                <IconButton
+                  icon={<ExportIcon />}
+                  bordered
+                  title={Locale.Chat.Actions.Export}
+                  onClick={() => {
+                    setShowExport(true);
+                  }}
+                />
+              </div>
+            )}
             {showMaxIcon && (
               <div className="window-action-button">
                 <IconButton

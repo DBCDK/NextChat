@@ -11,7 +11,7 @@ import LoadingIcon from "../icons/three-dots.svg";
 import { getCSSVar, useMobileScreen } from "../utils";
 
 import dynamic from "next/dynamic";
-import { Path, SlotID } from "../constant";
+import { FEATURES, Path, SlotID } from "../constant";
 import { ErrorBoundary } from "./error";
 
 import { getISOLang, getLang } from "../locales";
@@ -171,7 +171,9 @@ function Screen() {
     getClientConfig()?.isApp || (config.tightBorder && !isMobileScreen);
 
   useEffect(() => {
-    loadAsyncGoogleFont();
+    if (FEATURES.UseGoogleFont) {
+      loadAsyncGoogleFont();
+    }
   }, []);
 
   if (isArtifact) {
