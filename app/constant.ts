@@ -825,7 +825,11 @@ export const internalAllowedWebDavEndpoints = [
   "https://app.koofr.net/dav/Koofr",
 ];
 
-export const DEFAULT_GA_ID = "";
+export const DEFAULT_GA_ID = process.env.NEXT_PUBLIC_DISABLE_GA || "G-89WN60ZK2E";
 
 export const SAAS_CHAT_URL = "https://nextchat.club";
 export const SAAS_CHAT_UTM_URL = "https://nextchat.club?utm=github";
+
+export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME ?? "NextChat";
+export const TAGLINE = process.env.NEXT_PUBLIC_TAGLINE ?? "Build your own AI assistant.";
+export const DISABLE_SIDEBAR_LOGO = !!process.env.NEXT_PUBLIC_DISABLE_SIDEBAR_LOGO;
