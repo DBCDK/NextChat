@@ -46,7 +46,7 @@ export const DEFAULT_CONFIG = {
   fontSize: 14,
   fontFamily: "",
   theme: Theme.Auto as Theme,
-  tightBorder: true, //!!config?.isApp,
+  tightBorder: process.env.NEXT_PUBLIC_TIGHT_BORDER === undefined ? (!!config?.isApp) : (process.env.NEXT_PUBLIC_TIGHT_BORDER === "true"),
   sendPreviewBubble: true,
   enableAutoGenerateTitle: true,
   sidebarWidth: DEFAULT_SIDEBAR_WIDTH,
@@ -60,30 +60,12 @@ export const DEFAULT_CONFIG = {
   dontShowMaskSplashScreen: false, // dont show splash screen when create chat
   hideBuiltinMasks: false, // dont add builtin masks
 
-  customModels: `
-    deepseek-r1
-    chatbib
-    hawkeye
-    gemma2:27b
-    gemma2:9b
-    llama3.1:8b
-    mistral-small:24b
-    mistral-nemo:12b
-    watt-tool:8b
-    command-r:35b
-    tulu3:8b
-    qwq:32b
-    qwen2.5:32b
-    phi4:14b
-    granite3.1-dense:8b
-  `
-    .trim()
-    .replace(/\s*,?\s+/g, ","),
+  customModels: process.env.NEXT_PUBLIC_CUSTOM_MODELS ?? "",
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "gemma2:27b" as ModelType,
-    providerName: "gemma2:27b" as ServiceProvider,
+    model: process.env.NEXT_PUBLIC_MODEL ?? "gpt-4o-mini" as ModelType,
+    providerName: process.env.NEXT_PUBLIC_PROVIDER ?? "OpenAI" as ServiceProvider,
     temperature: 0.5,
     top_p: 1,
     max_tokens: 4000,
@@ -92,8 +74,8 @@ export const DEFAULT_CONFIG = {
     sendMemory: true,
     historyMessageCount: 4,
     compressMessageLengthThreshold: 1000,
-    compressModel: "gemma2:27b",
-    compressProviderName: "gemma2:27b",
+    compressModel: "",
+    compressProviderName: "",
     enableInjectSystemPrompts: true,
     template: config?.template ?? DEFAULT_INPUT_TEMPLATE,
     size: "1024x1024" as ModelSize,

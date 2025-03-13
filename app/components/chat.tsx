@@ -13,6 +13,7 @@ import SendWhiteIcon from "../icons/send-white.svg";
 import BrainIcon from "../icons/brain.svg";
 import RenameIcon from "../icons/rename.svg";
 import EditIcon from "../icons/rename.svg";
+import ExportIcon from "../icons/share.svg";
 import ReturnIcon from "../icons/return.svg";
 import CopyIcon from "../icons/copy.svg";
 import SpeakIcon from "../icons/speak.svg";
@@ -1734,7 +1735,7 @@ function _Chat() {
                 />
               </div>
             )}
-            {/*
+            {process.env.NEXT_PUBLIC_DISABLE_EXPORT ? null : (
             <div className="window-action-button">
               <IconButton
                 icon={<ExportIcon />}
@@ -1745,7 +1746,7 @@ function _Chat() {
                 }}
               />
             </div>
-            */}
+            )}
             {showMaxIcon && (
               <div className="window-action-button">
                 <IconButton

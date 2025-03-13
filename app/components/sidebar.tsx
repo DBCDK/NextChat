@@ -4,11 +4,14 @@ import styles from "./home.module.scss";
 
 import { IconButton } from "./button";
 import SettingsIcon from "../icons/settings.svg";
+import GithubIcon from "../icons/github.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
 import DeleteIcon from "../icons/delete.svg";
 import MaskIcon from "../icons/mask.svg";
+import McpIcon from "../icons/mcp.svg";
 import DragIcon from "../icons/drag.svg";
+import DiscoveryIcon from "../icons/discovery.svg";
 
 import Locale from "../locales";
 
@@ -20,6 +23,7 @@ import {
   MIN_SIDEBAR_WIDTH,
   NARROW_SIDEBAR_WIDTH,
   Path,
+  REPO_URL,
   APP_NAME,
   TAGLINE,
   DISABLE_SIDEBAR_LOGO,
@@ -337,7 +341,7 @@ export function SideBar(props: { className?: string }) {
                 />
               </Link>
             </div>
-            {/*
+            {process.env.NEXT_PUBLIC_DISABLE_EXPORT ? null : (
             <div className={styles["sidebar-action"]}>
               <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
                 <IconButton
@@ -347,7 +351,7 @@ export function SideBar(props: { className?: string }) {
                 />
               </a>
             </div>
-            */}
+            )}
           </>
         }
         secondaryAction={
