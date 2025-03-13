@@ -62,7 +62,7 @@ const DEFAULT_SILICONFLOW_URL = isApp
 console.log(getClientConfig());
 const DEFAULT_ACCESS_STATE = {
   accessCode: "",
-  useCustomConfig: true,
+  useCustomConfig: !!process.env.NEXT_PUBLIC_USE_CUSTOM_CONFIG,
 
   provider: ServiceProvider.OpenAI,
 
