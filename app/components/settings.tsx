@@ -1746,6 +1746,7 @@ export function Settings() {
           </ListItem>
         </List>
 
+        {process.env.NEXT_PUBLIC_DISABLE_PROMPT_LIBRARY ? null : (
         <List>
           <ListItem
             title={Locale.Settings.Prompt.Disable.Title}
@@ -1779,6 +1780,7 @@ export function Settings() {
             />
           </ListItem>
         </List>
+        )}
 
         {process.env.NEXT_PUBLIC_DISABLE_LLM_SETTINGS ? null : (<>
         <List id={SlotID.CustomModel}>
