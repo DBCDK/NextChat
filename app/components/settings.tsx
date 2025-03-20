@@ -1486,6 +1486,7 @@ export function Settings() {
       </div>
       <div className={styles["settings"]}>
         <List>
+          {process.env.NEXT_PUBLIC_DISABLE_AVATARS ? null : (
           <ListItem title={Locale.Settings.Avatar}>
             <Popover
               onClose={() => setShowEmojiPicker(false)}
@@ -1511,6 +1512,7 @@ export function Settings() {
               </div>
             </Popover>
           </ListItem>
+          )}
 
           {process.env.NEXT_PUBLIC_DISABLE_SETTINGS_UPDATE_INFO ? null : (
           <ListItem

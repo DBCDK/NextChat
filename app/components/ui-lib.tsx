@@ -523,7 +523,7 @@ export function Selector<T>(props: {
                 key={i}
                 title={item.title}
                 subTitle={item.subTitle}
-                icon={<Avatar model={item.value as string} />}
+                icon={ process.env.NEXT_PUBLIC_DISABLE_AVATARS ? "" : <Avatar model={item.value as string} /> }
                 onClick={(e) => {
                   if (item.disable) {
                     e.stopPropagation();

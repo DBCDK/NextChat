@@ -797,7 +797,7 @@ export function ChatActions(props: {
           />
         )}
 
-        {showPlugins(currentProviderName, currentModel) && (
+        {!process.env.NEXT_PUBLIC_DISABLE_PLUGINS && showPlugins(currentProviderName, currentModel) && (
           <ChatAction
             onClick={() => {
               if (pluginStore.getAll().length == 0) {
@@ -1852,7 +1852,9 @@ function _Chat() {
                                   }}
                                 ></IconButton>
                               </div>
-                              {isUser ? (
+
+                              {process.env.NEXT_PUBLIC_DISABLE_AVATARS ? null : 
+                               isUser ? (
                                 <Avatar avatar={config.avatar} />
                               ) : (
                                 <>
