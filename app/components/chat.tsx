@@ -644,11 +644,13 @@ export function ChatActions(props: {
           }
         />
 
+        {!process.env.NEXT_PUBLIC_DISABLE_PROMPT_LIBRARY && (
         <ChatAction
           onClick={props.showPromptHints}
           text={Locale.Chat.InputActions.Prompt}
           icon={<PromptIcon />}
         />
+        )}
 
         <ChatAction
           onClick={() => {
