@@ -61,12 +61,12 @@ const DEFAULT_SILICONFLOW_URL = isApp
 
 const DEFAULT_ACCESS_STATE = {
   accessCode: "",
-  useCustomConfig: false,
+  useCustomConfig: !!process.env.NEXT_PUBLIC_USE_CUSTOM_CONFIG,
 
   provider: ServiceProvider.OpenAI,
 
   // openai
-  openaiUrl: DEFAULT_OPENAI_URL,
+  openaiUrl: process.env.NEXT_PUBLIC_BASE_URL ?? DEFAULT_OPENAI_URL,
   openaiApiKey: "",
 
   // azure

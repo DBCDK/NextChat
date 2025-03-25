@@ -171,7 +171,9 @@ function Screen() {
     getClientConfig()?.isApp || (config.tightBorder && !isMobileScreen);
 
   useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_DISABLE_GOOGLE_FONTS) {
     loadAsyncGoogleFont();
+    }
   }, []);
 
   if (isArtifact) {

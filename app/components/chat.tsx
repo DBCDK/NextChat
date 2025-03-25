@@ -644,11 +644,13 @@ export function ChatActions(props: {
           }
         />
 
+        {!process.env.NEXT_PUBLIC_DISABLE_PROMPT_LIBRARY && (
         <ChatAction
           onClick={props.showPromptHints}
           text={Locale.Chat.InputActions.Prompt}
           icon={<PromptIcon />}
         />
+        )}
 
         <ChatAction
           onClick={() => {
@@ -795,7 +797,7 @@ export function ChatActions(props: {
           />
         )}
 
-        {showPlugins(currentProviderName, currentModel) && (
+        {!process.env.NEXT_PUBLIC_DISABLE_PLUGINS && showPlugins(currentProviderName, currentModel) && (
           <ChatAction
             onClick={() => {
               if (pluginStore.getAll().length == 0) {
@@ -1735,6 +1737,7 @@ function _Chat() {
                 />
               </div>
             )}
+            {process.env.NEXT_PUBLIC_DISABLE_EXPORT ? null : (
             <div className="window-action-button">
               <IconButton
                 icon={<ExportIcon />}
@@ -1745,6 +1748,7 @@ function _Chat() {
                 }}
               />
             </div>
+            )}
             {showMaxIcon && (
               <div className="window-action-button">
                 <IconButton
@@ -1848,10 +1852,11 @@ function _Chat() {
                                   }}
                                 ></IconButton>
                               </div>
-                              {isUser ? (
-                                <Avatar avatar={config.avatar} />
-                              ) : (
-                                <>
+                              {process.env.NEXT_PUBLIC_DISABLE_AVATARS ? null : (
+                                isUser ? (
+                                  <Avatar avatar={config.avatar} />
+                                ) : (
+                                  <>
                                   {["system"].includes(message.role) ? (
                                     <Avatar avatar="2699-fe0f" />
                                   ) : (
@@ -1864,7 +1869,7 @@ function _Chat() {
                                     />
                                   )}
                                 </>
-                              )}
+                              ))}
                             </div>
                             {!isUser && (
                               <div className={styles["chat-model-name"]}>
