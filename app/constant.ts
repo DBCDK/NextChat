@@ -651,7 +651,7 @@ const siliconflowModels = [
 ];
 
 let seq = 1000; // 内置的模型序号生成器从1000开始
-export const DEFAULT_MODELS = [
+export const DEFAULT_MODELS = process.env.NEXT_PUBLIC_DISABLE_MODELS ? [] : [
   ...openaiModels.map((name) => ({
     name,
     available: true,
@@ -824,7 +824,7 @@ export const internalAllowedWebDavEndpoints = [
   "https://app.koofr.net/dav/Koofr",
 ];
 
-export const DEFAULT_GA_ID = "G-89WN60ZK2E";
+export const DEFAULT_GA_ID = process.env.NEXT_PUBLIC_DISABLE_GA ? "" : "G-89WN60ZK2E";
 
 export const SAAS_CHAT_URL = "https://nextchat.club";
 export const SAAS_CHAT_UTM_URL = "https://nextchat.club?utm=github";

@@ -46,7 +46,10 @@ export const DEFAULT_CONFIG = {
   fontSize: 14,
   fontFamily: "",
   theme: Theme.Auto as Theme,
-  tightBorder: !!config?.isApp,
+  tightBorder:
+    process.env.NEXT_PUBLIC_TIGHT_BORDER === undefined
+      ? !!config?.isApp
+      : process.env.NEXT_PUBLIC_TIGHT_BORDER === "true",
   sendPreviewBubble: true,
   enableAutoGenerateTitle: true,
   sidebarWidth: DEFAULT_SIDEBAR_WIDTH,
@@ -60,12 +63,12 @@ export const DEFAULT_CONFIG = {
   dontShowMaskSplashScreen: false, // dont show splash screen when create chat
   hideBuiltinMasks: false, // dont add builtin masks
 
-  customModels: "",
+  customModels: process.env.NEXT_PUBLIC_CUSTOM_MODELS ?? "",
   models: DEFAULT_MODELS as any as LLMModel[],
 
   modelConfig: {
-    model: "gpt-4o-mini" as ModelType,
-    providerName: "OpenAI" as ServiceProvider,
+    model: (process.env.NEXT_PUBLIC_MODEL ?? "gpt-4o-mini") as ModelType,
+    providerName: (process.env.NEXT_PUBLIC_PROVIDER ?? "OpenAI") as ServiceProvider,
     temperature: 0.5,
     top_p: 1,
     max_tokens: 4000,
