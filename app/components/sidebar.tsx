@@ -281,6 +281,7 @@ export function SideBar(props: { className?: string }) {
               shadow
             />
           ))}
+          {process.env.NEXT_PUBLIC_DISABLE_PLUGINS ? null : (
           <IconButton
             icon={<DiscoveryIcon />}
             text={shouldNarrow ? undefined : Locale.Discovery.Name}
@@ -288,6 +289,7 @@ export function SideBar(props: { className?: string }) {
             onClick={() => setshowDiscoverySelector(true)}
             shadow
           />
+          )}
         </div>
         {showDiscoverySelector && (
           <Selector
