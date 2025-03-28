@@ -77,7 +77,7 @@ export const ALL_LANG_OPTIONS: Record<Lang, string> = {
 };
 
 const LANG_KEY = "lang";
-const DEFAULT_LANG = process.env.NEXT_PUBLIC_DEFAULT_LANG ?? "en";
+const DEFAULT_LANG = (process.env.NEXT_PUBLIC_DEFAULT_LANG ?? "en") as Lang;
 
 const fallbackLang = en;
 const targetLang = ALL_LANGS[getLang()] as LocaleType;
