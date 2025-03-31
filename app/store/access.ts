@@ -67,7 +67,7 @@ const DEFAULT_ACCESS_STATE = {
 
   // openai
   openaiUrl: process.env.NEXT_PUBLIC_BASE_URL ?? DEFAULT_OPENAI_URL,
-  openaiApiKey: "",
+  openaiApiKey: process.env.NEXT_PUBLIC_API_KEY ?? "",
 
   // azure
   azureUrl: "",
