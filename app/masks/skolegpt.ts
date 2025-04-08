@@ -29,6 +29,7 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
     createdAt: 0,
     hideContext: true,
   },
+  /*
   {
     avatar: "1f33f",
     name: "Naturfag",
@@ -59,4 +60,5 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
     plugin: [],
     hideContext: true,
   },
+  */
 ];
