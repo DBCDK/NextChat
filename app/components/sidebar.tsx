@@ -10,6 +10,7 @@ import AddIcon from "../icons/add.svg";
 import DeleteIcon from "../icons/delete.svg";
 import MaskIcon from "../icons/mask.svg";
 import McpIcon from "../icons/mcp.svg";
+import SkoleGptIcon from "../icons/skolegpt.svg";
 import DragIcon from "../icons/drag.svg";
 import DiscoveryIcon from "../icons/discovery.svg";
 
@@ -252,7 +253,8 @@ export function SideBar(props: { className?: string }) {
       <SideBarHeader
         title={process.env.NEXT_PUBLIC_APP_TITLE ?? "NextChat"}
         subTitle={process.env.NEXT_PUBLIC_APP_TAGLINE ?? "Build your own AI assistant."}
-        logo={process.env.NEXT_PUBLIC_DISABLE_SIDEBAR_LOGO ? null : <ChatGptIcon />}
+        //logo={process.env.NEXT_PUBLIC_DISABLE_SIDEBAR_LOGO ? null : <ChatGptIcon />}
+        logo={<SkoleGptIcon />}
         shouldNarrow={shouldNarrow}
       >
         <div className={styles["sidebar-header-bar"]}>
