@@ -35,7 +35,7 @@ import { estimateTokenLength } from "../utils/token";
 import { ModelConfig, ModelType, useAppConfig } from "./config";
 import { useAccessStore } from "./access";
 import { collectModelsWithDefaultModel } from "../utils/model";
-import { createEmptyMask, Mask } from "./mask";
+import { createEmptyMask, Mask, useMaskStore } from "./mask";
 import { executeMcpAction, getAllTools, isMcpEnabled } from "../mcp/actions";
 import { extractMcpJson, isMcpJson } from "../mcp/utils";
 
@@ -224,7 +224,7 @@ async function getMcpSystemPrompt(): Promise<string> {
 }
 
 const DEFAULT_CHAT_STATE = {
-  sessions: [createEmptySession()],
+  sessions: [{...createEmptySession(), initialSession: true} as ChatSession],
   currentSessionIndex: 0,
   lastInput: "",
 };
@@ -306,6 +306,15 @@ export const useChatStore = createPersistStore(
 
       newSession(mask?: Mask) {
         const session = createEmptySession();
+
+        // Get the SkoleGPT mask from mask store if no mask is provided
+        if (!mask) {
+          const masks = useMaskStore.getState().getAll();
+          const skolegptMask = masks.find(m => m.name === "SkoleGPT");
+          if (skolegptMask) {
+            mask = skolegptMask;
+          }
+        }
 
         if (mask) {
           const config = useAppConfig.getState();
