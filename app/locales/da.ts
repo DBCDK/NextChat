@@ -59,7 +59,7 @@ const da: PartialLocaleType = {
     },
     Commands: {
       new: "Ny chat",
-      newm: "Ny chat med persona",
+      newm: "Ny chat med agent",
       next: "Næste chat",
       prev: "Forrige chat",
       clear: "Ryd alt før",
@@ -75,7 +75,7 @@ const da: PartialLocaleType = {
         dark: "Mørkt tema",
       },
       Prompt: "Prompts",
-      Masks: "Personaer",
+      Masks: "Agenter",
       Clear: "Ryd kontekst",
       Settings: "Indstillinger",
       UploadImage: "Upload billeder",
@@ -96,7 +96,7 @@ const da: PartialLocaleType = {
     StopSpeak: "Stop oplæsning",
     Config: {
       Reset: "Nulstil til standard",
-      SaveAs: "Gem som persona",
+      SaveAs: "Gem som agent",
     },
     IsContext: "Ekstra prompt til baggrund",
     ShortcutKey: {
@@ -122,7 +122,7 @@ const da: PartialLocaleType = {
     },
     IncludeContext: {
       Title: "Tag baggrund med",
-      SubTitle: "Skal ekstra baggrund (persona) med i eksporten?",
+      SubTitle: "Skal prompt med i eksporten?",
     },
     Steps: {
       Select: "Vælg",
@@ -254,17 +254,17 @@ const da: PartialLocaleType = {
       },
       LocalState: "Lokale data",
       Overview: (overview: any) =>
-        `${overview.chat} chats, ${overview.message} beskeder, ${overview.prompt} prompts, ${overview.mask} personaer`,
+        `${overview.chat} chats, ${overview.message} beskeder, ${overview.prompt} prompts, ${overview.mask} agenter`,
       ImportFailed: "Import mislykkedes",
     },
     Mask: {
       Splash: {
-        Title: "Persona-forside",
+        Title: "Agent-forside",
         SubTitle: "Vis denne side, når du opretter ny chat",
       },
       Builtin: {
-        Title: "Skjul indbyggede personaer",
-        SubTitle: "Vis ikke de indbyggede personaer i listen",
+        Title: "Skjul indbyggede agenter",
+        SubTitle: "Vis ikke de indbyggede agenter i listen",
       },
     },
     Prompt: {
@@ -690,9 +690,9 @@ const da: PartialLocaleType = {
     },
   },
   Mask: {
-    Name: "Persona",
+    Name: "Agent",
     Page: {
-      Title: "Prompts som personaer",
+      Title: "Prompts som agenter",
       SubTitle: (count: number) => `${count} skabeloner`,
       Search: "Søg skabeloner",
       Create: "Opret ny",
@@ -732,7 +732,7 @@ const da: PartialLocaleType = {
         SubTitle: "Luk/åbn lange kodestykker automatisk",
       },
       Share: {
-        Title: "Del denne persona",
+        Title: "Del denne agent",
         SubTitle: "Få et link til denne skabelon",
         Action: "Kopiér link",
       },
@@ -741,8 +741,8 @@ const da: PartialLocaleType = {
   NewChat: {
     Return: "Tilbage",
     Skip: "Start straks",
-    Title: "Vælg en persona",
-    SubTitle: "Chat med den persona, du vælger",
+    Title: "Vælg en agent",
+    SubTitle: "Chat med den agent, du vælger",
     More: "Se flere",
     NotShow: "Vis ikke igen",
     ConfirmNoShow:
