@@ -3,6 +3,7 @@ import path from "path";
 import { CN_MASKS } from "./cn";
 import { TW_MASKS } from "./tw";
 import { EN_MASKS } from "./en";
+import { SKOLEGPT_MASKS } from "./skolegpt";
 
 import { type BuiltinMask } from "./typing";
 
@@ -10,6 +11,7 @@ const BUILTIN_MASKS: Record<string, BuiltinMask[]> = {
   cn: CN_MASKS,
   tw: TW_MASKS,
   en: EN_MASKS,
+  da: SKOLEGPT_MASKS,
 };
 
 const dirname = path.dirname(__filename);
