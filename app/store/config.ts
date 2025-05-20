@@ -50,10 +50,6 @@ export const DEFAULT_CONFIG = {
     process.env.NEXT_PUBLIC_TIGHT_BORDER === undefined
       ? !!config?.isApp
       : process.env.NEXT_PUBLIC_TIGHT_BORDER === "true",
-  tightBorder:
-    process.env.NEXT_PUBLIC_TIGHT_BORDER === undefined
-      ? !!config?.isApp
-      : process.env.NEXT_PUBLIC_TIGHT_BORDER === "true",
   sendPreviewBubble: true,
   enableAutoGenerateTitle: true,
   sidebarWidth: DEFAULT_SIDEBAR_WIDTH,
@@ -67,7 +63,6 @@ export const DEFAULT_CONFIG = {
   dontShowMaskSplashScreen: false, // dont show splash screen when create chat
   hideBuiltinMasks: false, // dont add builtin masks
 
-  customModels: process.env.NEXT_PUBLIC_CUSTOM_MODELS ?? "",
   customModels: process.env.NEXT_PUBLIC_CUSTOM_MODELS ?? "",
   models: DEFAULT_MODELS as any as LLMModel[],
 

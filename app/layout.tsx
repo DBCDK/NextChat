@@ -14,7 +14,6 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_APP_TAGLINE ?? "Your personal ChatGPT Chat Bot.",
   appleWebApp: {
     title: process.env.NEXT_PUBLIC_APP_TITLE ?? "NextChat",
-    title: process.env.NEXT_PUBLIC_APP_TITLE ?? "NextChat",
     statusBarStyle: "default",
   },
 };
