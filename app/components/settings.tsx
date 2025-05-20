@@ -511,6 +511,7 @@ function SyncItems() {
   return (
     <>
       <List>
+        {process.env.NEXT_PUBLIC_DISABLE_SYNC ? null : (
         <ListItem
           title={Locale.Settings.Sync.CloudState}
           subTitle={
@@ -547,6 +548,7 @@ function SyncItems() {
             )}
           </div>
         </ListItem>
+        )}
 
         <ListItem
           title={Locale.Settings.Sync.LocalState}
@@ -1484,6 +1486,7 @@ export function Settings() {
       </div>
       <div className={styles["settings"]}>
         <List>
+          {process.env.NEXT_PUBLIC_DISABLE_AVATARS ? null : (
           <ListItem title={Locale.Settings.Avatar}>
             <Popover
               onClose={() => setShowEmojiPicker(false)}
@@ -1509,7 +1512,9 @@ export function Settings() {
               </div>
             </Popover>
           </ListItem>
+          )}
 
+          {process.env.NEXT_PUBLIC_DISABLE_SETTINGS_UPDATE_INFO ? null : (
           <ListItem
             title={Locale.Settings.Update.Version(currentVersion ?? "unknown")}
             subTitle={
@@ -1542,6 +1547,7 @@ export function Settings() {
               />
             )}
           </ListItem>
+          )}
 
           <ListItem title={Locale.Settings.SendKey}>
             <Select
@@ -1561,7 +1567,7 @@ export function Settings() {
               ))}
             </Select>
           </ListItem>
-
+              
           <ListItem title={Locale.Settings.Theme}>
             <Select
               aria-label={Locale.Settings.Theme}
@@ -1740,6 +1746,7 @@ export function Settings() {
           </ListItem>
         </List>
 
+        {process.env.NEXT_PUBLIC_DISABLE_PROMPT_LIBRARY ? null : (
         <List>
           <ListItem
             title={Locale.Settings.Prompt.Disable.Title}
@@ -1773,7 +1780,9 @@ export function Settings() {
             />
           </ListItem>
         </List>
+        )}
 
+        {process.env.NEXT_PUBLIC_DISABLE_LLM_SETTINGS ? null : (<>
         <List id={SlotID.CustomModel}>
           {saasStartComponent}
           {accessCodeComponent}
@@ -1909,6 +1918,8 @@ export function Settings() {
             }}
           />
         </List>
+        </>
+        )}
 
         <DangerItems />
       </div>

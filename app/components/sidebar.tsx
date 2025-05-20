@@ -250,9 +250,9 @@ export function SideBar(props: { className?: string }) {
       {...props}
     >
       <SideBarHeader
-        title="NextChat"
-        subTitle="Build your own AI assistant."
-        logo={<ChatGptIcon />}
+        title={process.env.NEXT_PUBLIC_APP_TITLE ?? "NextChat"}
+        subTitle={process.env.NEXT_PUBLIC_APP_TAGLINE ?? "Build your own AI assistant."}
+        logo={process.env.NEXT_PUBLIC_DISABLE_SIDEBAR_LOGO ? null : <ChatGptIcon />}
         shouldNarrow={shouldNarrow}
       >
         <div className={styles["sidebar-header-bar"]}>
@@ -269,7 +269,8 @@ export function SideBar(props: { className?: string }) {
             }}
             shadow
           />
-          {mcpEnabled && (
+          {process.env.NEXT_PUBLIC_DISABLE_MCP ? null : (
+            mcpEnabled && (
             <IconButton
               icon={<McpIcon />}
               text={shouldNarrow ? undefined : Locale.Mcp.Name}
@@ -279,7 +280,7 @@ export function SideBar(props: { className?: string }) {
               }}
               shadow
             />
-          )}
+          ))}
           <IconButton
             icon={<DiscoveryIcon />}
             text={shouldNarrow ? undefined : Locale.Discovery.Name}
@@ -336,6 +337,7 @@ export function SideBar(props: { className?: string }) {
                 />
               </Link>
             </div>
+            {process.env.NEXT_PUBLIC_DISABLE_EXPORT ? null : (
             <div className={styles["sidebar-action"]}>
               <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
                 <IconButton
@@ -345,6 +347,7 @@ export function SideBar(props: { className?: string }) {
                 />
               </a>
             </div>
+            )}
           </>
         }
         secondaryAction={
