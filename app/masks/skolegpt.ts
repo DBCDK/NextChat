@@ -29,6 +29,26 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
     createdAt: 0,
     hideContext: true,
   },
+  {
+    avatar: "1f392",
+    name: "MitCFU RAG",
+    context: [],
+    modelConfig: {
+      model: "mitcfu-rag",
+      temperature: 0.7,
+      top_p: 0.95,
+      max_tokens: 2000,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 4,
+      compressMessageLengthThreshold: 1000,
+    },
+    lang: "da",
+    builtin: true,
+    createdAt: 0,
+    hideContext: true,
+  },
   /*
   {
     avatar: "1f33f",
