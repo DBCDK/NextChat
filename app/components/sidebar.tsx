@@ -243,6 +243,16 @@ export function SideBar(props: { className?: string }) {
     checkMcpStatus();
   }, []);
 
+  const currentChat = chatStore.currentSession();
+  const currentSystemPrompt = process.env.NEXT_PUBLIC_SYSTEM_PROMPT_IN_SIDEBAR
+    ? currentChat?.mask?.context?.[0]?.content
+    : null;
+  console.log(currentChat);
+  const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    chatStore.updateTargetSession(currentChat, (session) => {
+      session.mask.context[0].content = e.target.value;
+    });
+  };
   return (
     <SideBarContainer
       onDragStart={onDragStart}
@@ -258,6 +268,16 @@ export function SideBar(props: { className?: string }) {
         logo={<SkoleGptIcon />}
         shouldNarrow={shouldNarrow}
       >
+        {currentSystemPrompt && (
+          <div className={styles["system-prompt-preview"]}>
+            <div className={styles["system-prompt-label"]}>Systemprompt:</div>
+            <textarea
+              value={currentSystemPrompt as string}
+              onChange={handlePromptChange}
+              className={styles["system-prompt-textarea"]}
+            />
+          </div>
+        )}
         <div className={styles["sidebar-header-bar"]}>
           <IconButton
             icon={<MaskIcon />}

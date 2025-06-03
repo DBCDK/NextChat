@@ -347,3 +347,24 @@
 .rtl-screen {
   direction: rtl;
 }
+
+.system-prompt-textarea {
+  font-family: var(--font-family);
+  width: calc(100% - 15px);
+  white-space: pre-wrap;
+  word-break: break-word;
+  resize: none;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: var(--black);
+  background-color: var(--white);
+  padding: 4px 8px;
+  border-radius: 4px;
+  height: 100px;
+  margin-bottom: 8px;
+}
+.system-prompt-label {
+  font-weight: 600;
+  color: var(--black);
+}
