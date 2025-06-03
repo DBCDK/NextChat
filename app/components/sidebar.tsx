@@ -5,7 +5,6 @@ import styles from "./home.module.scss";
 import { IconButton } from "./button";
 import SettingsIcon from "../icons/settings.svg";
 import GithubIcon from "../icons/github.svg";
-import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
 import DeleteIcon from "../icons/delete.svg";
 import MaskIcon from "../icons/mask.svg";
@@ -13,6 +12,7 @@ import McpIcon from "../icons/mcp.svg";
 import SkoleGptIcon from "../icons/skolegpt.svg";
 import DragIcon from "../icons/drag.svg";
 import DiscoveryIcon from "../icons/discovery.svg";
+import { useMaskStore } from "../store/mask";
 
 import Locale from "../locales";
 
@@ -232,6 +232,7 @@ export function SideBar(props: { className?: string }) {
   const navigate = useNavigate();
   const config = useAppConfig();
   const chatStore = useChatStore();
+  const maskStore = useMaskStore();
   const [mcpEnabled, setMcpEnabled] = useState(false);
 
   useEffect(() => {
@@ -244,6 +245,19 @@ export function SideBar(props: { className?: string }) {
     checkMcpStatus();
   }, []);
 
+  const currentChat = chatStore.currentSession();
+  const currentSystemPrompt = process.env.NEXT_PUBLIC_SYSTEM_PROMPT_IN_SIDEBAR
+    ? currentChat?.mask?.context?.[0]?.content
+    : null;
+  const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    chatStore.updateTargetSession(currentChat, (session) => {
+      if (session.mask.builtin) {
+        session.mask = maskStore.create(session.mask);
+        session.mask.name = "Tilpasset " + session.mask.name;
+      }
+      session.mask.context[0].content = e.target.value;
+    });
+  };
   return (
     <SideBarContainer
       onDragStart={onDragStart}
@@ -252,11 +266,23 @@ export function SideBar(props: { className?: string }) {
     >
       <SideBarHeader
         title={process.env.NEXT_PUBLIC_APP_TITLE ?? "NextChat"}
-        subTitle={process.env.NEXT_PUBLIC_APP_TAGLINE ?? "Build your own AI assistant."}
+        subTitle={
+          process.env.NEXT_PUBLIC_APP_TAGLINE ?? "Build your own AI assistant."
+        }
         //logo={process.env.NEXT_PUBLIC_DISABLE_SIDEBAR_LOGO ? null : <ChatGptIcon />}
         logo={<SkoleGptIcon />}
         shouldNarrow={shouldNarrow}
       >
+        {currentSystemPrompt && (
+          <div className={styles["system-prompt-preview"]}>
+            <div className={styles["system-prompt-label"]}>Systemprompt:</div>
+            <textarea
+              value={currentSystemPrompt as string}
+              onChange={handlePromptChange}
+              className={styles["system-prompt-textarea"]}
+            />
+          </div>
+        )}
         <div className={styles["sidebar-header-bar"]}>
           <IconButton
             icon={<MaskIcon />}
