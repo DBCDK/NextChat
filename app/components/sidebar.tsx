@@ -12,6 +12,7 @@ import McpIcon from "../icons/mcp.svg";
 import SkoleGptIcon from "../icons/skolegpt.svg";
 import DragIcon from "../icons/drag.svg";
 import DiscoveryIcon from "../icons/discovery.svg";
+import { useMaskStore } from "../store/mask";
 
 import Locale from "../locales";
 
@@ -231,6 +232,7 @@ export function SideBar(props: { className?: string }) {
   const navigate = useNavigate();
   const config = useAppConfig();
   const chatStore = useChatStore();
+  const maskStore = useMaskStore();
   const [mcpEnabled, setMcpEnabled] = useState(false);
 
   useEffect(() => {
@@ -247,9 +249,12 @@ export function SideBar(props: { className?: string }) {
   const currentSystemPrompt = process.env.NEXT_PUBLIC_SYSTEM_PROMPT_IN_SIDEBAR
     ? currentChat?.mask?.context?.[0]?.content
     : null;
-  console.log(currentChat);
   const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     chatStore.updateTargetSession(currentChat, (session) => {
+      if (session.mask.builtin) {
+        session.mask = maskStore.create(session.mask);
+        session.mask.name = "Tilpasset " + session.mask.name;
+      }
       session.mask.context[0].content = e.target.value;
     });
   };
