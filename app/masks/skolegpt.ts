@@ -3,7 +3,7 @@ import { BuiltinMask } from "./typing";
 export const SKOLEGPT_MASKS: BuiltinMask[] = [
   {
     avatar: "1f4ac",
-    name: "SkoleGPT-Gemma3",
+    name: "SkoleGPT Gemma3",
     context: [
       {
         id: "skolegpt-gemma3-0",

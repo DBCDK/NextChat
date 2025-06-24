@@ -268,9 +268,10 @@ export const useChatStore = createPersistStore(
 
       clearSessions() {
         set(() => ({
-          sessions: [createEmptySession()],
+          sessions: [],
           currentSessionIndex: 0,
         }));
+        get().newSession();
       },
 
       selectSession(index: number) {
@@ -358,11 +359,6 @@ export const useChatStore = createPersistStore(
           sessions.length - 1,
         );
 
-        if (deletingLastSession) {
-          nextIndex = 0;
-          sessions.push(createEmptySession());
-        }
-
         // for undo delete action
         const restoreState = {
           currentSessionIndex: get().currentSessionIndex,
@@ -373,6 +369,9 @@ export const useChatStore = createPersistStore(
           currentSessionIndex: nextIndex,
           sessions,
         }));
+        if (deletingLastSession) {
+          get().newSession();
+        }
 
         showToast(
           Locale.Home.DeleteToast,
@@ -864,6 +863,28 @@ export const useChatStore = createPersistStore(
         }
       },
     };
+
+    for (const i of [20, 100, 200, 500, 1000, 2000, 5000])
+      setTimeout(fixEmptyConversation, i);
+    function fixEmptyConversation() {
+      // The masks are not loaded at initialisation time,
+      // so the default empty session has an empty mask,
+      // instead of skolegpt-mask.
+      // If the session is empty has en empty mask
+      // (could also be loaded from store meanwhile),
+      // replace it with a new session.
+      const chatStore = get();
+      if (
+        get().sessions.length == 1 &&
+        get().sessions[0].messages.length == 0
+      ) {
+        let mask = chatStore.sessions[0].mask;
+        if (mask.name == "New Conversation" && mask.avatar == "gpt-bot") {
+          chatStore.newSession();
+          chatStore.deleteSession(1);
+        }
+      }
+    }
 
     return methods;
   },
