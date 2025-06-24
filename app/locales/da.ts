@@ -75,7 +75,7 @@ const da: PartialLocaleType = {
         dark: "Mørkt tema",
       },
       Prompt: "Prompts",
-      Masks: "Agenter",
+      Masks: "Assistenter",
       Clear: "Ryd kontekst",
       Settings: "Indstillinger",
       UploadImage: "Upload billeder",
@@ -259,7 +259,7 @@ const da: PartialLocaleType = {
     },
     Mask: {
       Splash: {
-        Title: "Agent-forside",
+        Title: "Assistent-forside",
         SubTitle: "Vis denne side, når du opretter ny chat",
       },
       Builtin: {
@@ -690,9 +690,9 @@ const da: PartialLocaleType = {
     },
   },
   Mask: {
-    Name: "Agent",
+    Name: "Assistent",
     Page: {
-      Title: "Prompts som agenter",
+      Title: "Prompts som assistenter",
       SubTitle: (count: number) => `${count} skabeloner`,
       Search: "Søg skabeloner",
       Create: "Opret ny",
@@ -732,7 +732,7 @@ const da: PartialLocaleType = {
         SubTitle: "Luk/åbn lange kodestykker automatisk",
       },
       Share: {
-        Title: "Del denne agent",
+        Title: "Del denne assistent",
         SubTitle: "Få et link til denne skabelon",
         Action: "Kopiér link",
       },
@@ -741,8 +741,8 @@ const da: PartialLocaleType = {
   NewChat: {
     Return: "Tilbage",
     Skip: "Start straks",
-    Title: "Vælg en agent",
-    SubTitle: "Chat med den agent, du vælger",
+    Title: "Vælg en assistent",
+    SubTitle: "Chat med den assistent, du vælger",
     More: "Se flere",
     NotShow: "Vis ikke igen",
     ConfirmNoShow:
