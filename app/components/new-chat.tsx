@@ -115,7 +115,7 @@ export function NewChat() {
 
   return (
     <div className={styles["new-chat"]}>
-      {process.env.NEXT_PUBLIC_NO_MASK_TOP_BUTTONS !== "true" &&
+      {process.env.NEXT_PUBLIC_NO_NEW_CHAT_TOP_BUTTONS !== "true" &&
       <div className={styles["mask-header"]}>
         <IconButton
           icon={<LeftIcon />}
