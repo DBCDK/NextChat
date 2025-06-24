@@ -115,6 +115,7 @@ export function NewChat() {
 
   return (
     <div className={styles["new-chat"]}>
+      {process.env.NEXT_PUBLIC_NO_MASK_TOP_BUTTONS !== "true" &&
       <div className={styles["mask-header"]}>
         <IconButton
           icon={<LeftIcon />}
@@ -135,6 +136,7 @@ export function NewChat() {
           ></IconButton>
         )}
       </div>
+      }
       <div className={styles["mask-cards"]}>
         <div className={styles["mask-card"]}>
           <EmojiAvatar avatar="1f606" size={24} />
