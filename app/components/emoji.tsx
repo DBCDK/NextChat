@@ -6,6 +6,7 @@ import EmojiPicker, {
 
 import { ModelType } from "../store";
 
+import BotIconSkoleGPT from "../icons/skolegpt.svg";
 import BotIconDefault from "../icons/llm-icons/default.svg";
 import BotIconOpenAI from "../icons/llm-icons/openai.svg";
 import BotIconGemini from "../icons/llm-icons/gemini.svg";
@@ -68,7 +69,10 @@ export function Avatar(props: { model?: ModelType; avatar?: string }) {
       LlmIcon = BotIconClaude;
     } else if (modelName.includes("llama")) {
       LlmIcon = BotIconMeta;
-    } else if (modelName.startsWith("mixtral") || modelName.startsWith("codestral")) {
+    } else if (
+      modelName.startsWith("mixtral") ||
+      modelName.startsWith("codestral")
+    ) {
       LlmIcon = BotIconMistral;
     } else if (modelName.includes("deepseek")) {
       LlmIcon = BotIconDeepseek;
@@ -92,6 +96,9 @@ export function Avatar(props: { model?: ModelType; avatar?: string }) {
       LlmIcon = BotIconChatglm;
     }
 
+    if (process.env.NEXT_PUBLIC_OVERRIDE_BOT_ICON) {
+      LlmIcon = BotIconSkoleGPT;
+    }
     return (
       <div className="no-dark">
         <LlmIcon className="user-avatar" width={30} height={30} />
