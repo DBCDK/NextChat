@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import styles from "./home.module.scss";
 
 import BotIcon from "../icons/bot.svg";
+import BotIconSkoleGPT from "../icons/skolegpt.svg";
 import LoadingIcon from "../icons/three-dots.svg";
 
 import { getCSSVar, useMobileScreen } from "../utils";
@@ -34,7 +35,11 @@ import { initializeMcpSystem, isMcpEnabled } from "../mcp/actions";
 export function Loading(props: { noLogo?: boolean }) {
   return (
     <div className={clsx("no-dark", styles["loading-content"])}>
-      {!props.noLogo && <BotIcon />}
+      {!props.noLogo && process.env.NEXT_PUBLIC_OVERRIDE_BOT_ICON ? (
+        <BotIconSkoleGPT />
+      ) : (
+        <BotIcon />
+      )}
       <LoadingIcon />
     </div>
   );
