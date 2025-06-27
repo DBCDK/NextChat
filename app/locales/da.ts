@@ -59,7 +59,7 @@ const da: PartialLocaleType = {
     },
     Commands: {
       new: "Ny chat",
-      newm: "Ny chat med agent",
+      newm: "Ny chat med assistent",
       next: "Næste chat",
       prev: "Forrige chat",
       clear: "Ryd alt før",
@@ -96,7 +96,7 @@ const da: PartialLocaleType = {
     StopSpeak: "Stop oplæsning",
     Config: {
       Reset: "Nulstil til standard",
-      SaveAs: "Gem som agent",
+      SaveAs: "Gem som assistent",
     },
     IsContext: "Ekstra prompt til baggrund",
     ShortcutKey: {
@@ -254,7 +254,7 @@ const da: PartialLocaleType = {
       },
       LocalState: "Lokale data",
       Overview: (overview: any) =>
-        `${overview.chat} chats, ${overview.message} beskeder, ${overview.prompt} prompts, ${overview.mask} agenter`,
+        `${overview.chat} chats, ${overview.message} beskeder, ${overview.prompt} prompts, ${overview.mask} assistenter`,
       ImportFailed: "Import mislykkedes",
     },
     Mask: {
@@ -263,8 +263,8 @@ const da: PartialLocaleType = {
         SubTitle: "Vis denne side, når du opretter ny chat",
       },
       Builtin: {
-        Title: "Skjul indbyggede agenter",
-        SubTitle: "Vis ikke de indbyggede agenter i listen",
+        Title: "Skjul indbyggede assistenter",
+        SubTitle: "Vis ikke de indbyggede assistenter i listen",
       },
     },
     Prompt: {
