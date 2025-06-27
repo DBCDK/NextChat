@@ -1335,6 +1335,7 @@ function _Chat() {
   }, [session.mask.context, session.mask.hideContext]);
 
   if (
+    !process.env.NEXT_PUBLIC_HIDE_BOT_HELLO &&
     context.length === 0 &&
     session.messages.at(0)?.content !== BOT_HELLO.content
   ) {
@@ -2143,6 +2144,18 @@ function _Chat() {
               />
             )}
           </div>
+        </div>
+        <div
+          style={{
+            marginTop: -15,
+            marginBottom: 5,
+            textAlign: "center",
+            fontSize: 10,
+            color: "#666",
+          }}
+        >
+          SkoleGPT kan tage fejl. Tjek altid vigtige oplysninger og råd med en
+          pålidelig kilde.
         </div>
       </div>
       {showExport && (

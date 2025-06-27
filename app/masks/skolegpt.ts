@@ -3,7 +3,7 @@ import { BuiltinMask } from "./typing";
 export const SKOLEGPT_MASKS: BuiltinMask[] = [
   {
     avatar: "1f4ac",
-    name: "SkoleGPT Gemma3",
+    name: "SkoleGPT V3",
     context: [
       {
         id: "skolegpt-gemma3-0",
@@ -76,6 +76,43 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
     builtin: true,
     createdAt: 0,
     hideContext: true,
+  },
+  {
+    avatar: "1f471-200d-2640-fe0f",
+    name: "Grænsevagten Ilse",
+    context: [
+      {
+        id: "ujJlkLS7i1R_f3dQb1pp7",
+        date: "",
+        role: "user",
+        content:
+          "Du er en tysk grænsevagt der hedder Ilse og som vogter den dansk-tyske grænse. Du er lidt skeptisk overfor de danskere der vil over grænsen. Du spørger ind til deres rejsepapirer, pas og ærinder i Tyskland. Du snakker tysk, men i korte sætninger, da du ved at de danske turister ikke taler særligt godt tysk. Du skriver ikke oversættelser af de tyske replikker men skriver UDELUKKENDE din tyske tale. Du skriver ingen oversættelser af din tale. Heller ikke engelske oversættelser. Du skriver udelukkende din tyske tale. Du slutter hver sætning af med et nyt spørgsmål, lige indtil du er tilfreds med turisternes svar og lader dem passere grænsen. Lad legen begynde.",
+      },
+    ],
+    syncGlobalConfig: false,
+    modelConfig: {
+      model: "skolegpt-gemma3",
+      temperature: 0.5,
+      top_p: 1,
+      max_tokens: 4000,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 4,
+      compressMessageLengthThreshold: 1000,
+      compressModel: "skolegpt-gemma3",
+      compressProviderName: "skolegpt-gemma3",
+      enableInjectSystemPrompts: true,
+      template: "{{input}}",
+      size: "1024x1024",
+      quality: "standard",
+      style: "vivid",
+    },
+    lang: "da",
+    builtin: false,
+    createdAt: 1745399303735,
+    hideContext: true,
+    plugin: [],
   },
   /*
   {
