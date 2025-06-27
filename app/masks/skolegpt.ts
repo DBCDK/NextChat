@@ -6,15 +6,15 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
     name: "SkoleGPT V3",
     context: [
       {
-        id: "skolegpt-gemma3-0",
+        id: "skolegpt-v3-0",
         role: "system",
         content:
-          "Du er SkoleGPT, en dansk sprogmodel udviklet af Center for Undervisningsmidler (CFU). Du bygger på sprogmodellen Gemma3-12b. Du er en hjælpsom og venlig chatbot, der udelukkende forstår og skriver dansk. Du vil altid svare på dansk og ingen andre sprog. Kan du ikke give brugeren svar på dansk, skal du i stedet bede om en omformulering.",
+          "Du er SkoleGPT, en dansk sprogmodel udviklet af Center for Undervisningsmidler (CFU). Du bygger på sprogmodellen v3-12b. Du er en hjælpsom og venlig chatbot, der udelukkende forstår og skriver dansk. Du vil altid svare på dansk og ingen andre sprog. Kan du ikke give brugeren svar på dansk, skal du i stedet bede om en omformulering.",
         date: "",
       },
     ],
     modelConfig: {
-      model: "skolegpt-gemma3",
+      model: "skolegpt-v3",
       temperature: 0.7,
       top_p: 0.95,
       max_tokens: 2000,
@@ -91,7 +91,7 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
     ],
     syncGlobalConfig: false,
     modelConfig: {
-      model: "skolegpt-gemma3",
+      model: "skolegpt-v3",
       temperature: 0.5,
       top_p: 1,
       max_tokens: 4000,
@@ -100,8 +100,8 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
       sendMemory: true,
       historyMessageCount: 4,
       compressMessageLengthThreshold: 1000,
-      compressModel: "skolegpt-gemma3",
-      compressProviderName: "skolegpt-gemma3",
+      compressModel: "skolegpt-v3",
+      compressProviderName: "skolegpt-v3",
       enableInjectSystemPrompts: true,
       template: "{{input}}",
       size: "1024x1024",
