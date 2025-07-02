@@ -709,7 +709,7 @@ const da: PartialLocaleType = {
       Title: (readonly: boolean) =>
         `Rediger skabelon ${readonly ? "(skrivebeskyttet)" : ""}`,
       Download: "Download",
-      Clone: "Klon",
+      Clone: "Opret",
     },
     Config: {
       Avatar: "Chat-avatar",
