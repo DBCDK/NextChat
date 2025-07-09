@@ -311,7 +311,9 @@ export const useChatStore = createPersistStore(
         // Get the SkoleGPT mask from mask store if no mask is provided
         if (!mask) {
           const masks = useMaskStore.getState().getAll();
-          const skolegptMask = masks.find((m) => m.name === "SkoleGPT");
+          const skolegptMask = masks.find(
+            (m) => m.name === process.env.NEXT_PUBLIC_DEFAULT_CHAT,
+          );
           if (skolegptMask) {
             mask = skolegptMask;
           }
