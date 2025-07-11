@@ -311,11 +311,12 @@ export const useChatStore = createPersistStore(
         // Get the SkoleGPT mask from mask store if no mask is provided
         if (!mask) {
           const masks = useMaskStore.getState().getAll();
-          const skolegptMask = masks.find(
+          const defaultMask = masks.find(
             (m) => m.name === process.env.NEXT_PUBLIC_DEFAULT_CHAT,
           );
-          if (skolegptMask) {
-            mask = skolegptMask;
+          console.log("Using default mask", defaultMask);
+          if (defaultMask) {
+            mask = defaultMask;
           }
         }
 
@@ -866,7 +867,7 @@ export const useChatStore = createPersistStore(
       },
     };
 
-    for (const i of [20, 100, 200, 500, 1000, 2000, 5000])
+    for (const i of [20, 100, 200, 500, 1000, 2000, 5000, 10000])
       setTimeout(fixEmptyConversation, i);
     function fixEmptyConversation() {
       // The masks are not loaded at initialisation time,
@@ -881,10 +882,15 @@ export const useChatStore = createPersistStore(
         get().sessions[0].messages.length == 0
       ) {
         let mask = chatStore.sessions[0].mask;
-        if (mask.name == "New Conversation" && mask.avatar == "gpt-bot") {
+        console.log("Trying to fix empty conversation", mask.name, mask.avatar);
+        if (
+          (mask.name == "Ny samtale" || mask.name == "New Conversation") &&
+          mask.avatar == "gpt-bot"
+        ) {
           chatStore.newSession();
           chatStore.deleteSession(1);
         }
+        console.log(mask);
       }
     }
 
