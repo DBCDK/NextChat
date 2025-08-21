@@ -30,8 +30,10 @@ Features are configured/enabled through `NEXT_PUBLIC_...` environment variables.
 
 ---
 
+As the browser-client talks directly to llm.dbc.dk, the NextJS-backend is only used to send config to the client etc. and is firewalled to disallow outgoing connections (both for internal and external network).
+
+## Misc Notes:
+
 A (quick) code review has been done, adding feature-toggles to remove google-analytics, so when updating to upstream, remember to review upstream changes before merging.
 
----
-
-As the browser-client talks directly to llm.dbc.dk, the NextJS-backend is only used to send config to the client etc. and is firewalled to disallow outgoing connections (both for internal and external network).
+https://github.com/DBCDK/NextChat/compare/SOME_HASH...main
