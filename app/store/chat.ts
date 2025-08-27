@@ -867,8 +867,10 @@ export const useChatStore = createPersistStore(
       },
     };
 
+    /*
     for (const i of [20, 100, 200, 500, 1000, 2000, 5000, 10000])
       setTimeout(fixEmptyConversation, i);
+    */
     function fixEmptyConversation() {
       // The masks are not loaded at initialisation time,
       // so the default empty session has an empty mask,
