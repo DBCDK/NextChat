@@ -273,7 +273,7 @@ export function SideBar(props: { className?: string }) {
         logo={<SkoleGptIcon />}
         shouldNarrow={shouldNarrow}
       >
-        {currentSystemPrompt !== undefined && (
+        {currentSystemPrompt !== undefined && !shouldNarrow && (
           <div className={styles["system-prompt-preview"]}>
             <div className={styles["system-prompt-label"]}>Systemprompt:</div>
             <textarea
