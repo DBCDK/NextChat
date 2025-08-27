@@ -248,7 +248,7 @@ export function SideBar(props: { className?: string }) {
   const currentChat = chatStore.currentSession();
   const currentSystemPrompt = process.env.NEXT_PUBLIC_SYSTEM_PROMPT_IN_SIDEBAR
     ? currentChat?.mask?.context?.[0]?.content
-    : null;
+    : undefined;
   const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     chatStore.updateTargetSession(currentChat, (session) => {
       if (session.mask.builtin) {
@@ -273,7 +273,7 @@ export function SideBar(props: { className?: string }) {
         logo={<SkoleGptIcon />}
         shouldNarrow={shouldNarrow}
       >
-        {currentSystemPrompt && (
+        {currentSystemPrompt !== undefined && (
           <div className={styles["system-prompt-preview"]}>
             <div className={styles["system-prompt-label"]}>Systemprompt:</div>
             <textarea

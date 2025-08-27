@@ -1,0 +1,18 @@
+.light {
+  --primary: rgb(128, 128, 128) !important;
+  --second: rgb(245, 245, 245) !important;
+}
+.dark {
+  --primary: rgb(128, 128, 128) !important;
+  --second: rgb(40, 40, 40) !important;
+}
+:root {
+  --primary: rgb(128, 128, 128) !important;
+  --second: rgb(245, 245, 245) !important;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: rgb(128, 128, 128) !important;
+    --second: rgb(40, 40, 40) !important;
+  }
+}
