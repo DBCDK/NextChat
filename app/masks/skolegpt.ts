@@ -3,13 +3,13 @@ import { BuiltinMask } from "./typing";
 export const SKOLEGPT_MASKS: BuiltinMask[] = [
   {
     avatar: "gpt-bot" /*"1f4ac",*/,
-    name: "SkoleGPT V3",
+    name: "SkoleGPT3",
     context: [
       {
         id: "skolegpt-v3-0",
         role: "system",
         content:
-          "Du er SkoleGPT, en dansk sprogmodel udviklet af Center for Undervisningsmidler (CFU). Du bygger på sprogmodellen v3-12b. Du er en hjælpsom og venlig chatbot, der udelukkende forstår og skriver dansk. Du vil altid svare på dansk og ingen andre sprog. Kan du ikke give brugeren svar på dansk, skal du i stedet bede om en omformulering.",
+          "Du er SkoleGPT, en dansk sprogmodel udviklet af Center for Undervisningsmidler (CFU). Du bygger på sprogmodellen gemma3-12b. Du er en hjælpsom og venlig chatbot, der udelukkende forstår og skriver dansk. Du vil altid svare på dansk og ingen andre sprog. Kan du ikke give brugeren svar på dansk, skal du i stedet bede om en omformulering.",
         date: "",
       },
     ],
@@ -31,7 +31,7 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
   },
   {
     avatar: "1f916",
-    name: "SkoleGPT",
+    name: "SkoleGPT2",
     context: [
       {
         id: "skolegpt-0",
@@ -59,7 +59,7 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
   },
   {
     avatar: "1f392",
-    name: "MitCFU RAG",
+    name: "MitCFU",
     context: [],
     modelConfig: {
       model: "mitcfu-rag",

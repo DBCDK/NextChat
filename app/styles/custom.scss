@@ -1,25 +1,18 @@
-/* Custom grayscale color overrides */
-
-/* Override primary and secondary colors with grayscale versions */
 .light {
-  --primary: rgb(128, 128, 128) !important; /* Medium gray instead of blue-green */
-  --second: rgb(245, 245, 245) !important; /* Light gray instead of light blue */
+  --primary: rgb(128, 128, 128) !important;
+  --second: rgb(245, 245, 245) !important;
 }
-
 .dark {
-  --primary: rgb(128, 128, 128) !important; /* Medium gray instead of blue-green */
-  --second: rgb(40, 40, 40) !important; /* Dark gray instead of dark blue-gray */
+  --primary: rgb(128, 128, 128) !important;
+  --second: rgb(40, 40, 40) !important;
 }
-
-/* Override root colors for system preference detection */
 :root {
-  --primary: rgb(128, 128, 128) !important; /* Medium gray instead of blue-green */
-  --second: rgb(245, 245, 245) !important; /* Light gray instead of light blue */
+  --primary: rgb(128, 128, 128) !important;
+  --second: rgb(245, 245, 245) !important;
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary: rgb(128, 128, 128) !important; /* Medium gray instead of blue-green */
-    --second: rgb(40, 40, 40) !important; /* Dark gray instead of dark blue-gray */
+    --primary: rgb(128, 128, 128) !important;
+    --second: rgb(40, 40, 40) !important;
   }
 }
