@@ -277,7 +277,7 @@ export function RenderExport(props: {
       return {
         id: i.toString(),
         role: role as any,
-        content: role === "user" ? v.textContent ?? "" : v.innerHTML,
+        content: role === "user" ? (v.textContent ?? "") : v.innerHTML,
         date: "",
       };
     });
@@ -380,13 +380,15 @@ export function PreviewActions(props: {
           icon={<DownloadIcon />}
           onClick={props.download}
         ></IconButton>
-        <IconButton
-          text={Locale.Export.Share}
-          bordered
-          shadow
-          icon={loading ? <LoadingIcon /> : <ShareIcon />}
-          onClick={share}
-        ></IconButton>
+        {process.env.NEXT_PUBLIC_UNBRANDED_EXPORTER && (
+          <IconButton
+            text={Locale.Export.Share}
+            bordered
+            shadow
+            icon={loading ? <LoadingIcon /> : <ShareIcon />}
+            onClick={share}
+          ></IconButton>
+        )}
       </div>
       <div
         style={{
@@ -515,19 +517,25 @@ export function ImagePreviewer(props: {
       >
         <div className={styles["chat-info"]}>
           <div className={clsx(styles["logo"], "no-dark")}>
-            <NextImage
-              src={ChatGptIcon.src}
-              alt="logo"
-              width={50}
-              height={50}
-            />
+            {process.env.NEXT_PUBLIC_UNBRANDED_EXPORTER && (
+              <NextImage
+                src={ChatGptIcon.src}
+                alt="logo"
+                width={50}
+                height={50}
+              />
+            )}
           </div>
 
           <div>
-            <div className={styles["main-title"]}>NextChat</div>
-            <div className={styles["sub-title"]}>
-              github.com/ChatGPTNextWeb/ChatGPT-Next-Web
+            <div className={styles["main-title"]}>
+              {process.env.NEXT_PUBLIC_APP_TITLE}
             </div>
+            {process.env.NEXT_PUBLIC_UNBRANDED_EXPORTER && (
+              <div className={styles["sub-title"]}>
+                github.com/ChatGPTNextWeb/ChatGPT-Next-Web
+              </div>
+            )}
             <div className={styles["icons"]}>
               <MaskAvatar avatar={config.avatar} />
               <span className={styles["icon-space"]}>&</span>
@@ -625,7 +633,7 @@ export function MarkdownPreviewer(props: {
       .map((m) => {
         return m.role === "user"
           ? `## ${Locale.Export.MessageFromYou}:\n${getMessageTextContent(m)}`
-          : `## ${Locale.Export.MessageFromChatGPT}:\n${getMessageTextContent(
+          : `## ${Locale.Export.MessageFromChat}:\n${getMessageTextContent(
               m,
             ).trim()}`;
       })

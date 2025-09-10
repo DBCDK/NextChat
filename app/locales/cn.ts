@@ -116,6 +116,7 @@ const cn = {
     Share: "分享到 ShareGPT",
     MessageFromYou: "用户",
     MessageFromChatGPT: "ChatGPT",
+    MessageFromChat: "AI",
     Format: {
       Title: "导出格式",
       SubTitle: "可以导出 Markdown 文本或者 PNG 图片",
