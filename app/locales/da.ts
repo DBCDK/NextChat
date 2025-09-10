@@ -115,6 +115,7 @@ const da: PartialLocaleType = {
     Download: "Download",
     MessageFromYou: "Fra dig",
     MessageFromChatGPT: "Fra ChatGPT",
+    MessageFromChat: "AI",
     Share: "Del til ShareGPT",
     Format: {
       Title: "Filformat",
@@ -761,7 +762,7 @@ const da: PartialLocaleType = {
   },
   Exporter: {
     Description: {
-      Title: "Kun beskeder efter sidste rydning vises",
+      Title: "",
     },
     Model: "Model",
     Messages: "Beskeder",
