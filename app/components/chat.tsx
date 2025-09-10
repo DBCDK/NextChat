@@ -1900,11 +1900,13 @@ function _Chat() {
                                         }
                                       />
 
-                                      <ChatAction
-                                        text={Locale.Chat.Actions.Pin}
-                                        icon={<PinIcon />}
-                                        onClick={() => onPinMessage(message)}
-                                      />
+                                      {!process.env.NEXT_PUBLIC_DISABLE_PIN && (
+                                        <ChatAction
+                                          text={Locale.Chat.Actions.Pin}
+                                          icon={<PinIcon />}
+                                          onClick={() => onPinMessage(message)}
+                                        />
+                                      )}
                                       <ChatAction
                                         text={Locale.Chat.Actions.Copy}
                                         icon={<CopyIcon />}

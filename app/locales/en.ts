@@ -116,7 +116,7 @@ const en: LocaleType = {
     Download: "Download",
     MessageFromYou: "Message From You",
     MessageFromChatGPT: "Message From ChatGPT",
-    MessageFromChatGPT: "AI",
+    MessageFromChat: "AI",
     Share: "Share to ShareGPT",
     Format: {
       Title: "Export Format",
