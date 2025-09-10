@@ -665,6 +665,17 @@ export function MaskPage() {
                   setEditingMaskId(undefined);
                 }}
               />,
+              ...(process.env.NEXT_PUBLIC_MASK_SAVEANDCLOSE
+                ? [
+                    <IconButton
+                      key="close"
+                      icon={<CloseIcon />}
+                      bordered
+                      text={"Gem og luk"}
+                      onClick={closeMaskModal}
+                    />,
+                  ]
+                : []),
             ]}
           >
             <MaskConfig
