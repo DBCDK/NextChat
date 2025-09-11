@@ -202,8 +202,8 @@ export const useAppConfig = createPersistStore(
     version: 4.1,
 
     merge(persistedState, currentState) {
-      const state = persistedState as ChatConfig | undefined;
-      if (!state) return { ...currentState };
+      let state = persistedState as ChatConfig | undefined;
+      if (!state) state = currentState;
       const models = currentState.models.slice();
       state.models.forEach((pModel) => {
         const idx = models.findIndex(
@@ -212,6 +212,18 @@ export const useAppConfig = createPersistStore(
         if (idx !== -1) models[idx] = pModel;
         else models.push(pModel);
       });
+
+      // Force custom env (if defined) to override persisted state
+      if (process.env.NEXT_PUBLIC_MODEL) {
+        state.modelConfig.model = process.env.NEXT_PUBLIC_MODEL as ModelType;
+      }
+      if (process.env.NEXT_PUBLIC_PROVIDER) {
+        state.modelConfig.providerName = process.env
+          .NEXT_PUBLIC_PROVIDER as ServiceProvider;
+      }
+      if (process.env.NEXT_PUBLIC_CUSTOM_MODELS) {
+        state.customModels = process.env.NEXT_PUBLIC_CUSTOM_MODELS;
+      }
       return { ...currentState, ...state, models: models };
     },
 
@@ -249,7 +261,7 @@ export const useAppConfig = createPersistStore(
         state.modelConfig.template =
           state.modelConfig.template !== DEFAULT_INPUT_TEMPLATE
             ? state.modelConfig.template
-            : config?.template ?? DEFAULT_INPUT_TEMPLATE;
+            : (config?.template ?? DEFAULT_INPUT_TEMPLATE);
       }
 
       if (version < 4.1) {
