@@ -312,9 +312,8 @@ export const useChatStore = createPersistStore(
         if (!mask) {
           const masks = useMaskStore.getState().getAll();
           const defaultMask = masks.find(
-            (m) => m.name === process.env.NEXT_PUBLIC_DEFAULT_MASK,
+            (m) => m.name === process.env.NEXT_PUBLIC_DEFAULT_MASK && m.builtin,
           );
-          console.log("Using default mask", defaultMask);
           if (defaultMask) {
             mask = defaultMask;
           }
