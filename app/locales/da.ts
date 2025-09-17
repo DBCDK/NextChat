@@ -713,8 +713,8 @@ const da: PartialLocaleType = {
       Clone: "Opret kopi",
     },
     Config: {
-      Avatar: "Chat-avatar",
-      Name: "Chat-navn",
+      Avatar: "Assistent ikon",
+      Name: "Assistentens navn",
       Sync: {
         Title: "Brug globale indstillinger",
         SubTitle: "Gældende for denne chat",
@@ -722,11 +722,13 @@ const da: PartialLocaleType = {
       },
       HideContext: {
         Title: "Skjul ekstra prompts",
-        SubTitle: "Vis dem ikke på chat-skærmen",
+        SubTitle:
+          "Vis ikke systemprompt og ekstra assistent-prompts/eksempler i chatten",
       },
       Artifacts: {
-        Title: "Brug Artefakter",
-        SubTitle: "Gør det muligt at vise HTML-sider",
+        Title: "Vis inline html-artefakter",
+        SubTitle:
+          "Hvis LLM'en genererer HTML-kode, kan det blive vist og prøves i chatten. \nDet skal starte med: ```html\n ...",
       },
       CodeFold: {
         Title: "Fold kode sammen",
