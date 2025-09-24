@@ -96,6 +96,9 @@ function setItem(key: string, value: string) {
 }
 
 function getLanguage() {
+  if (process.env.NEXT_PUBLIC_DEFAULT_LANG) {
+    return process.env.NEXT_PUBLIC_DEFAULT_LANG as Lang;
+  }
   try {
     const locale = new Intl.Locale(navigator.language).maximize();
     const region = locale?.region?.toLowerCase();

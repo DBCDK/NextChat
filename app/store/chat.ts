@@ -885,7 +885,9 @@ export const useChatStore = createPersistStore(
         let mask = chatStore.sessions[0].mask;
         console.log("Trying to fix empty conversation", mask.name, mask.avatar);
         if (
-          (mask.name == "Ny samtale" || mask.name == "New Conversation") &&
+          (mask.name == "Ny samtale" ||
+            mask.name == "New Conversation" ||
+            mask.name == "Nyoprettet Assistent") &&
           mask.avatar == "gpt-bot"
         ) {
           chatStore.newSession();
