@@ -599,7 +599,7 @@ const da: PartialLocaleType = {
     },
   },
   Store: {
-    DefaultTopic: "Ny samtale",
+    DefaultTopic: "Nyoprettet Assistent",
     BotHello: "Hej! Hvordan kan jeg hjælpe dig i dag?",
     Error: "Noget gik galt. Prøv igen senere.",
     Prompt: {
