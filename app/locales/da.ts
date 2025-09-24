@@ -522,7 +522,7 @@ const da: PartialLocaleType = {
     Model: "Model",
     CompressModel: {
       Title: "Opsummeringsmodel",
-      SubTitle: "Bruges til at korte historik ned og lave titel",
+      SubTitle: "Bruges til at forkorte historik og lave titel",
     },
     Temperature: {
       Title: "Temperatur",
@@ -708,7 +708,7 @@ const da: PartialLocaleType = {
     },
     EditModal: {
       Title: (readonly: boolean) =>
-        `Rediger skabelon ${readonly ? "(skrivebeskyttet)" : ""}`,
+        `Rediger assistent ${readonly ? "(skrivebeskyttet)" : ""}`,
       Download: "Download",
       Clone: "Opret kopi",
     },
@@ -721,7 +721,7 @@ const da: PartialLocaleType = {
         Confirm: "Erstat nuværende indstillinger med globale?",
       },
       HideContext: {
-        Title: "Skjul ekstra prompts",
+        Title: "Skjul prompts",
         SubTitle:
           "Vis ikke systemprompt og ekstra assistent-prompts/eksempler i chatten",
       },
@@ -735,8 +735,9 @@ const da: PartialLocaleType = {
         SubTitle: "Luk/åbn lange kodestykker automatisk",
       },
       Share: {
-        Title: "Del denne assistent",
-        SubTitle: "Få et link til denne skabelon",
+        Title: "Link til denne assistent",
+        SubTitle:
+          "Få et link til denne assistent (hvis det ikke er en indbygget assistent, virker linket kun på denne computer)",
         Action: "Kopiér link",
       },
     },
