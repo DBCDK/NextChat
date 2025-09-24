@@ -51,6 +51,7 @@ export const createEmptyMask = () =>
     builtin: false,
     createdAt: Date.now(),
     plugin: [],
+    hideContext: true,
   }) as Mask;
 
 export const useMaskStore = createPersistStore(
