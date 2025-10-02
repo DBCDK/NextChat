@@ -76,7 +76,7 @@ export const DEFAULT_CONFIG = {
     presence_penalty: 0,
     frequency_penalty: 0,
     sendMemory: true,
-    historyMessageCount: 4,
+    historyMessageCount: +(process.env.NEXT_PUBLIC_DEFAULT_MESSAGE_COUNT ?? 4),
     compressMessageLengthThreshold: 1000,
     compressModel: "",
     compressProviderName: "",
@@ -261,7 +261,7 @@ export const useAppConfig = createPersistStore(
         state.modelConfig.template =
           state.modelConfig.template !== DEFAULT_INPUT_TEMPLATE
             ? state.modelConfig.template
-            : (config?.template ?? DEFAULT_INPUT_TEMPLATE);
+            : config?.template ?? DEFAULT_INPUT_TEMPLATE;
       }
 
       if (version < 4.1) {

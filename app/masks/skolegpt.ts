@@ -29,6 +29,7 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
     createdAt: 0,
     hideContext: true,
   },
+  /*
   {
     avatar: "1f916",
     name: "SkoleGPT2",
@@ -49,7 +50,7 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
       presence_penalty: 0,
       frequency_penalty: 0,
       sendMemory: true,
-      historyMessageCount: 4,
+      historyMessageCount: 16,
       compressMessageLengthThreshold: 1000,
     },
     lang: "da",
@@ -57,6 +58,7 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
     createdAt: 0,
     hideContext: true,
   },
+  */
   {
     avatar: "1f392",
     name: "MitCFU",
@@ -69,7 +71,7 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
       presence_penalty: 0,
       frequency_penalty: 0,
       sendMemory: true,
-      historyMessageCount: 4,
+      historyMessageCount: 16,
       compressMessageLengthThreshold: 1000,
     },
     lang: "da",
@@ -98,7 +100,7 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
       presence_penalty: 0,
       frequency_penalty: 0,
       sendMemory: true,
-      historyMessageCount: 4,
+      historyMessageCount: 16,
       compressMessageLengthThreshold: 1000,
       compressModel: "skolegpt-v3",
       compressProviderName: "skolegpt-v3",
@@ -136,7 +138,7 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
       presence_penalty: 0,
       frequency_penalty: 0,
       sendMemory: true,
-      historyMessageCount: 4,
+      historyMessageCount: 16,
       compressMessageLengthThreshold: 1000,
     },
     lang: "da",
