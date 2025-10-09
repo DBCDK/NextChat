@@ -67,6 +67,13 @@ export default function RootLayout({
             <GoogleAnalytics gaId={serverConfig.gaId} />
           </>
         )}
+        {process.env.NEXT_PUBLIC_INJECT_ANALYTICS && (
+          <div
+            dangerouslySetInnerHTML={{
+              __html: process.env.NEXT_PUBLIC_INJECT_ANALYTICS,
+            }}
+          ></div>
+        )}
       </body>
     </html>
   );
