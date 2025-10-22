@@ -527,6 +527,7 @@ export function MaskPage() {
                 onClick={() => importFromFile()}
               />
             </div>
+            {/*
             <div className="window-action-button">
               <IconButton
                 icon={<CloseIcon />}
@@ -534,6 +535,7 @@ export function MaskPage() {
                 onClick={() => navigate(-1)}
               />
             </div>
+            */}
           </div>
         </div>
 
@@ -546,28 +548,29 @@ export function MaskPage() {
               autoFocus
               onInput={(e) => onSearch(e.currentTarget.value)}
             />
-            <Select
-              className={styles["mask-filter-lang"]}
-              value={filterLang ?? Locale.Settings.Lang.All}
-              onChange={(e) => {
-                const value = e.currentTarget.value;
-                if (value === Locale.Settings.Lang.All) {
-                  maskStore.setLanguage(undefined);
-                } else {
-                  maskStore.setLanguage(value as Lang);
-                }
-              }}
-            >
-              <option key="all" value={Locale.Settings.Lang.All}>
-                {Locale.Settings.Lang.All}
-              </option>
-              {AllLangs.map((lang) => (
-                <option value={lang} key={lang}>
-                  {ALL_LANG_OPTIONS[lang]}
+            {!process.env.NEXT_PUBLIC_HIDE_LANG && (
+              <Select
+                className={styles["mask-filter-lang"]}
+                value={filterLang ?? Locale.Settings.Lang.All}
+                onChange={(e) => {
+                  const value = e.currentTarget.value;
+                  if (value === Locale.Settings.Lang.All) {
+                    maskStore.setLanguage(undefined);
+                  } else {
+                    maskStore.setLanguage(value as Lang);
+                  }
+                }}
+              >
+                <option key="all" value={Locale.Settings.Lang.All}>
+                  {Locale.Settings.Lang.All}
                 </option>
-              ))}
-            </Select>
-
+                {AllLangs.map((lang) => (
+                  <option value={lang} key={lang}>
+                    {ALL_LANG_OPTIONS[lang]}
+                  </option>
+                ))}
+              </Select>
+            )}
             <IconButton
               className={styles["mask-create"]}
               icon={<AddIcon />}
@@ -583,16 +586,25 @@ export function MaskPage() {
           <div>
             {masks.map((m) => (
               <div className={styles["mask-item"]} key={m.id}>
-                <div className={styles["mask-header"]}>
+                <div
+                  className={styles["mask-header"]}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    chatStore.newSession(m);
+                    navigate(Path.Chat);
+                  }}
+                >
                   <div className={styles["mask-icon"]}>
                     <MaskAvatar avatar={m.avatar} model={m.modelConfig.model} />
                   </div>
                   <div className={styles["mask-title"]}>
                     <div className={styles["mask-name"]}>{m.name}</div>
                     <div className={clsx(styles["mask-info"], "one-line")}>
-                      {`${Locale.Mask.Item.Info(m.context.length)} / ${
-                        ALL_LANG_OPTIONS[m.lang]
-                      } / ${m.modelConfig.model}`}
+                      {`${Locale.Mask.Item.Info(m.context.length)} ${
+                        process.env.NEXT_PUBLIC_HIDE_LANG
+                          ? ""
+                          : " / " + ALL_LANG_OPTIONS[m.lang] + " / "
+                      } ${m.modelConfig.model}`}
                     </div>
                   </div>
                 </div>

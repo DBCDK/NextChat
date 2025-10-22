@@ -249,12 +249,9 @@ export function SideBar(props: { className?: string }) {
   const currentSystemPrompt = process.env.NEXT_PUBLIC_SYSTEM_PROMPT_IN_SIDEBAR
     ? currentChat?.mask?.context?.[0]?.content
     : undefined;
+  const editableSystemPrompt = !currentChat?.mask?.builtin;
   const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     chatStore.updateTargetSession(currentChat, (session) => {
-      if (session.mask.builtin) {
-        session.mask = maskStore.create(session.mask);
-        session.mask.name = "Tilpasset " + session.mask.name;
-      }
       session.mask.context[0].content = e.target.value;
     });
   };
@@ -275,8 +272,26 @@ export function SideBar(props: { className?: string }) {
       >
         {currentSystemPrompt !== undefined && !shouldNarrow && (
           <div className={styles["system-prompt-preview"]}>
-            <div className={styles["system-prompt-label"]}>Systemprompt:</div>
+            <div className={styles["system-prompt-label"]}>
+              Systemprompt
+              {!editableSystemPrompt && (
+                <div
+                  style={{
+                    color: "gray",
+                    fontSize: "80%",
+                    fontWeight: "normal",
+                    marginBottom: "8px",
+                  }}
+                >
+                  Indbygget assistent kan ikke ændres. Opret ny assistent for at
+                  redigere.
+                </div>
+              )}
+            </div>
+
             <textarea
+              style={{ opacity: editableSystemPrompt ? 1 : 0.7 }}
+              disabled={!editableSystemPrompt}
               value={currentSystemPrompt as string}
               onChange={handlePromptChange}
               className={styles["system-prompt-textarea"]}
@@ -289,7 +304,9 @@ export function SideBar(props: { className?: string }) {
             text={shouldNarrow ? undefined : Locale.Mask.Name}
             className={styles["sidebar-bar-button"]}
             onClick={() => {
-              if (config.dontShowMaskSplashScreen !== true) {
+              if (process.env.NEXT_PUBLIC_DISABLE_MASK_HOME) {
+                navigate(Path.Masks, { state: { fromHome: true } });
+              } else if (config.dontShowMaskSplashScreen !== true) {
                 navigate(Path.NewChat, { state: { fromHome: true } });
               } else {
                 navigate(Path.Masks, { state: { fromHome: true } });
@@ -385,7 +402,14 @@ export function SideBar(props: { className?: string }) {
             icon={<AddIcon />}
             text={shouldNarrow ? undefined : Locale.Home.NewChat}
             onClick={() => {
-              if (config.dontShowMaskSplashScreen) {
+              console.log(
+                "HERE",
+                process.env.NEXT_PUBLIC_DISABLE_MASK_HOME,
+                config.dontShowMaskSplashScreen,
+              );
+              if (process.env.NEXT_PUBLIC_DISABLE_MASK_HOME) {
+                navigate(Path.Masks);
+              } else if (config.dontShowMaskSplashScreen) {
                 chatStore.newSession();
                 navigate(Path.Chat);
               } else {
