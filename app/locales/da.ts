@@ -693,9 +693,9 @@ const da: PartialLocaleType = {
   Mask: {
     Name: "Assistent",
     Page: {
-      Title: "Prompts som assistenter",
-      SubTitle: (count: number) => `${count} skabeloner`,
-      Search: "Søg skabeloner",
+      Title: "Chat typer",
+      SubTitle: (count: number) => ``,
+      Search: "Søg assistent",
       Create: "Opret ny",
     },
     Item: {

@@ -204,7 +204,11 @@ function Screen() {
             <Route
               path={Path.Home}
               element={
-                process.env.NEXT_PUBLIC_MASK_HOME ? <NewChat /> : <Chat />
+                process.env.NEXT_PUBLIC_DISABLE_MASK_HOME ? (
+                  <MaskPage />
+                ) : (
+                  <NewChat />
+                )
               }
             />
             <Route path={Path.NewChat} element={<NewChat />} />
