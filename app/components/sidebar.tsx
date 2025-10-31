@@ -402,14 +402,10 @@ export function SideBar(props: { className?: string }) {
             icon={<AddIcon />}
             text={shouldNarrow ? undefined : Locale.Home.NewChat}
             onClick={() => {
-              console.log(
-                "HERE",
-                process.env.NEXT_PUBLIC_DISABLE_MASK_HOME,
-                config.dontShowMaskSplashScreen,
-              );
-              if (process.env.NEXT_PUBLIC_DISABLE_MASK_HOME) {
-                navigate(Path.Masks);
-              } else if (config.dontShowMaskSplashScreen) {
+              if (
+                process.env.NEXT_PUBLIC_DISABLE_MASK_HOME ||
+                config.dontShowMaskSplashScreen
+              ) {
                 chatStore.newSession();
                 navigate(Path.Chat);
               } else {
