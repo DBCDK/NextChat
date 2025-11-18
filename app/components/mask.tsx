@@ -56,6 +56,7 @@ import {
 } from "@hello-pangea/dnd";
 import { getMessageTextContent } from "../utils";
 import clsx from "clsx";
+import { InputRange } from "./input-range";
 
 // drag and drop helper function
 function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
@@ -101,6 +102,123 @@ export function MaskConfig(props: {
 
   const globalConfig = useAppConfig();
 
+  const [showSimpleSettings, setShowSimpleSettings] = useState(true);
+  if (showSimpleSettings) {
+    return (
+      <>
+        <div style={{ fontSize: 14, marginBottom: 8 }}>Systemprompt:</div>
+        <div
+          className={chatStyle["context-prompt"]}
+          style={{ marginBottom: 20 }}
+        >
+          <div className={chatStyle["context-prompt-row"]}>
+            <Input
+              value={(props.mask.context?.[0]?.content as string) || ""}
+              type="text"
+              className={chatStyle["context-content"]}
+              rows={5}
+              onInput={(e) =>
+                props.updateMask((mask) => {
+                  mask.context = [
+                    {
+                      ...(mask.context[0] || {}),
+                      role: "system",
+                      content: e.currentTarget.value,
+                    },
+                  ];
+                })
+              }
+            />
+          </div>
+        </div>
+        <List>
+          <ListItem title="Vis avancerede indstillinger">
+            <input
+              aria-label="Vis avancerede indstillinger"
+              type="checkbox"
+              checked={!showSimpleSettings}
+              onChange={() => setShowSimpleSettings(false)}
+            ></input>
+          </ListItem>
+          <ListItem title={Locale.Mask.Config.Avatar}>
+            <Popover
+              content={
+                <AvatarPicker
+                  onEmojiClick={(emoji) => {
+                    props.updateMask((mask) => (mask.avatar = emoji));
+                    setShowPicker(false);
+                  }}
+                ></AvatarPicker>
+              }
+              open={showPicker}
+              onClose={() => setShowPicker(false)}
+            >
+              <div
+                tabIndex={0}
+                aria-label={Locale.Mask.Config.Avatar}
+                onClick={() => setShowPicker(true)}
+                style={{ cursor: "pointer" }}
+              >
+                <MaskAvatar
+                  avatar={props.mask.avatar}
+                  model={props.mask.modelConfig.model}
+                />
+              </div>
+            </Popover>
+          </ListItem>
+          <ListItem title={Locale.Mask.Config.Name}>
+            <input
+              aria-label={Locale.Mask.Config.Name}
+              type="text"
+              value={props.mask.name}
+              onInput={(e) =>
+                props.updateMask((mask) => {
+                  mask.name = e.currentTarget.value;
+                })
+              }
+            ></input>
+          </ListItem>
+          <ListItem
+            title={Locale.Mask.Config.HideContext.Title}
+            subTitle={Locale.Mask.Config.HideContext.SubTitle}
+          >
+            <input
+              aria-label={Locale.Mask.Config.HideContext.Title}
+              type="checkbox"
+              checked={props.mask.hideContext}
+              onChange={(e) => {
+                props.updateMask((mask) => {
+                  mask.hideContext = e.currentTarget.checked;
+                });
+              }}
+            ></input>
+          </ListItem>
+        </List>
+        <List>
+          <ListItem
+            title={Locale.Settings.HistoryCount.Title}
+            subTitle={Locale.Settings.HistoryCount.SubTitle}
+          >
+            <InputRange
+              aria={Locale.Settings.HistoryCount.Title}
+              title={props.mask.modelConfig.historyMessageCount.toString()}
+              value={props.mask.modelConfig.historyMessageCount}
+              min="0"
+              max="64"
+              step="1"
+              onChange={(e) =>
+                updateConfig(
+                  (config) =>
+                    (config.historyMessageCount = e.target.valueAsNumber),
+                )
+              }
+            ></InputRange>
+          </ListItem>
+        </List>
+      </>
+    );
+  }
+
   return (
     <>
       <ContextPrompts
@@ -111,8 +229,15 @@ export function MaskConfig(props: {
           props.updateMask((mask) => (mask.context = context));
         }}
       />
-
       <List>
+        <ListItem title="Vis avancerede indstillinger">
+          <input
+            aria-label="Vis avancerede indstillinger"
+            type="checkbox"
+            checked={!showSimpleSettings}
+            onChange={() => setShowSimpleSettings(true)}
+          ></input>
+        </ListItem>
         <ListItem title={Locale.Mask.Config.Avatar}>
           <Popover
             content={
