@@ -48,6 +48,33 @@ export const SKOLEGPT_MASKS: BuiltinMask[] = [
     builtin: true,
     createdAt: 0,
     hideContext: true,
+  },{
+    "avatar":"1f9d1-200d-1f52c",
+    name: "Science RAG",
+    context: [
+      {
+        id:"8lztHUm7IxkXvmEaAIz11",
+        role: "system",
+        content: "",
+        date: "",
+      }
+    ],
+    syncGlobalConfig: false,
+    modelConfig: {
+      model: "science-rag",
+      temperature: 0.5,
+      top_p: 1,
+      max_tokens: 4000,
+      presence_penalty: 0,
+      frequency_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 64,
+    },
+    lang: "da",
+    builtin: true,
+    createdAt: 0,
+    plugin: [],
+    hideContext: true,
   },
   {
     avatar: "1f1e9-1f1ea",
