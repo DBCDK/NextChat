@@ -239,6 +239,21 @@ export const useChatStore = createPersistStore(
       };
     }
 
+    function cleanupEmptySessions(state: Partial<typeof DEFAULT_CHAT_STATE> & { sessions: ChatSession[]; currentSessionIndex: number }) {
+      const { sessions, currentSessionIndex } = state;
+      let newCurrentIndex = currentSessionIndex;
+      const filteredSessions: ChatSession[] = sessions.filter((session, index) => {
+        let keep = session.messages.length > 0 || index === currentSessionIndex;
+        if (!keep && index < currentSessionIndex) newCurrentIndex -= 1;
+        return keep;
+      });
+      return {
+        ...state,
+        sessions: filteredSessions,
+        currentSessionIndex: newCurrentIndex,
+      };
+    }
+
     const methods = {
       forkSession() {
         // 获取当前会话
@@ -260,10 +275,10 @@ export const useChatStore = createPersistStore(
           },
         };
 
-        set((state) => ({
-          currentSessionIndex: 0,
-          sessions: [newSession, ...state.sessions],
-        }));
+        set((state) => cleanupEmptySessions({
+            currentSessionIndex: 0,
+            sessions: [newSession, ...state.sessions],
+          }));
       },
 
       clearSessions() {
@@ -298,10 +313,11 @@ export const useChatStore = createPersistStore(
             newIndex += 1;
           }
 
-          return {
+          return cleanupEmptySessions({
+            ...state,
             currentSessionIndex: newIndex,
             sessions: newSessions,
-          };
+          });
         });
       },
 
@@ -333,10 +349,13 @@ export const useChatStore = createPersistStore(
           session.topic = mask.name;
         }
 
-        set((state) => ({
-          currentSessionIndex: 0,
-          sessions: [session].concat(state.sessions),
-        }));
+        set((state) => {
+          return cleanupEmptySessions({
+            ...state,
+            currentSessionIndex: 0,
+            sessions: [session].concat(state.sessions),
+          });
+        });
       },
 
       nextSession(delta: number) {
@@ -367,10 +386,13 @@ export const useChatStore = createPersistStore(
           sessions: get().sessions.slice(),
         };
 
-        set(() => ({
-          currentSessionIndex: nextIndex,
-          sessions,
-        }));
+        set((state) => {
+          return cleanupEmptySessions({
+            ...state,
+            currentSessionIndex: nextIndex,
+            sessions,
+          });
+        });
         if (deletingLastSession) {
           get().newSession();
         }
@@ -658,7 +680,7 @@ export const useChatStore = createPersistStore(
         const session = sessions.at(sessionIndex);
         const messages = session?.messages;
         updater(messages?.at(messageIndex));
-        set(() => ({ sessions }));
+        set((state) => cleanupEmptySessions({ ...state, sessions }));
       },
 
       resetSession(session: ChatSession) {
@@ -820,7 +842,7 @@ export const useChatStore = createPersistStore(
         const index = sessions.findIndex((s) => s.id === targetSession.id);
         if (index < 0) return;
         updater(sessions[index]);
-        set(() => ({ sessions }));
+        set((state) => cleanupEmptySessions({ ...state, sessions }));
       },
       async clearAllData() {
         await indexedDBStorage.clear();
